@@ -5,6 +5,7 @@ import { Inter, Raleway } from 'next/font/google';
 import { useRef, useState, useEffect } from 'react';
 import Meteors from '@/components/ui/meteors';
 import ShineBorder from '@/components/ui/shine-border';
+import { RainbowButton } from '@/components/ui/rainbow-button';
 
 const inter = Inter({ subsets: ['latin'] });
 const poppins = Raleway({ weight: ['400', '600', '700'], subsets: ['latin'] });
@@ -114,9 +115,9 @@ export default function Home() {
             We are pioneering the development of high-altitude, autonomous airships designed for Intelligence Surveillance and Reconnaissance (ISR) and
             near-space applications. Our solutions provide sustainable, cost-effective alternatives for defense, research, and commercial enterprises.
           </p>
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105">
+          <RainbowButton>
             Explore Our Solutions
-          </button>
+          </RainbowButton>
         </main>
 
         <svg
