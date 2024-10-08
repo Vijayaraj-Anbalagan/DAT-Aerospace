@@ -1,17 +1,60 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Inter, Poppins } from 'next/font/google';
-import { useRef } from 'react';
+import { Inter, Raleway } from 'next/font/google';
+import { useRef, useState, useEffect } from 'react';
+import Meteors from '@/components/ui/meteors';
+import ShineBorder from '@/components/ui/shine-border';
 
 const inter = Inter({ subsets: ['latin'] });
-const poppins = Poppins({ weight: ['400', '600', '700'], subsets: ['latin'] });
+const poppins = Raleway({ weight: ['400', '600', '700'], subsets: ['latin'] });
 
 export default function Home() {
   const homeRef = useRef(null);
   const aboutRef = useRef(null);
   const goalsRef = useRef(null);
   const contactUsRef = useRef(null);
+  const foundersRef = useRef(null);
+
+  const [activeSection, setActiveSection] = useState('Home');
+
+  useEffect(() => {
+    const sections = [
+      { ref: homeRef, name: 'Home' },
+      { ref: aboutRef, name: 'About Us' },
+      { ref: goalsRef, name: 'Goals' },
+      { ref: foundersRef, name: 'Meet the Founders' },
+      { ref: contactUsRef, name: 'Contact us' },
+    ];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const section = sections.find((section) => section.ref.current === entry.target);
+            if (section) {
+              setActiveSection(section.name);
+            }
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    sections.forEach((section) => {
+      if (section.ref.current) {
+        observer.observe(section.ref.current);
+      }
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        if (section.ref.current) {
+          observer.unobserve(section.ref.current);
+        }
+      });
+    };
+  }, []);
 
   // Scroll to the referenced section
   const scrollToSection = (ref: React.RefObject<HTMLElement>) => {
@@ -26,20 +69,23 @@ export default function Home() {
     >
       <header className="flex justify-between items-center py-6 px-6 lg:px-12 fixed z-40 w-full bg-opacity-80">
         <div className="flex items-center">
-          <span className="text-2xl font-bold">DAT</span>
+          <span className="text-2xl font-bold hidden lg:block">DAT</span>
         </div>
         <nav className="hidden md:block px-4 py-2 bg-gray-800 rounded-full border border-gray-700">
           <ul className="flex space-x-6">
-            {['Home', 'About Us', 'Goals', 'Contact us'].map((item) => (
+            {['Home', 'About Us', 'Goals', 'Meet the Founders', 'Contact us'].map((item) => (
               <li key={item}>
                 <button
                   onClick={() => {
                     if (item === 'Home') scrollToSection(homeRef);
                     if (item === 'About Us') scrollToSection(aboutRef);
                     if (item === 'Goals') scrollToSection(goalsRef);
+                    if (item === 'Meet the Founders') scrollToSection(foundersRef);
                     if (item === 'Contact us') scrollToSection(contactUsRef);
                   }}
-                  className="hover:text-cyan-400 transition-colors"
+                  className={`transition-colors ${
+                    activeSection === item ? 'text-cyan-400 font-bold transition-all' : 'hover:text-cyan-400'
+                  }`}
                 >
                   {item}
                 </button>
@@ -127,37 +173,39 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10">
           <main className="container mx-auto px-4 py-20">
-        <div className="flex flex-col lg:flex-row items-center justify-between">
-          <div className="lg:w-1/2 mb-10 lg:mb-0 ml-4">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-          About {' '}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600">
-            US
-          </span>
-            </h1>
-            <div className="space-y-6 text-gray-300">
-          <p>
-            Founded with a mission to revolutionize space technology,
-            Dashagriv Aerospace Technology Private Limited (DAT)
-            specializes in developing high-altitude platforms and
-            near-space launch solutions that cater to the needs of
-            defense agencies, space organizations, and commercial
-            enterprises.
-          </p>
+            <div className="flex flex-col lg:flex-row items-center justify-between">
+              <div className="lg:w-1/2 mb-10 lg:mb-0 ml-4">
+                <h1 className="text-5xl md:text-7xl font-bold mb-6">
+                  About {' '}
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600">
+                    US
+                  </span>
+                </h1>
+                <div className="space-y-6 text-gray-300">
+                  <div className="mt-10">
+                    <h2 className="text-4xl font-bold mb-4">Our Vision</h2>
+                    <p className="text-lg text-gray-300">
+                      To be a global leader in space technology, pioneering high-altitude platforms and near-space solutions that enhance security, enable scientific research, and promote sustainability.
+                    </p>
+                    <h2 className="text-4xl font-bold mt-8 mb-4">Our Mission</h2>
+                    <p className="text-lg text-gray-300">
+                      We develop and deploy cutting-edge, solar-powered, autonomous airships and offer innovative near-space launch services. Our solutions empower governments, commercial enterprises, and research institutions to explore and utilize the stratosphere effectively.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="lg:w-1/2 flex justify-center lg:justify-end">
+                <div className="relative w-64 h-64 md:w-[90%] md:h-[400px] animate-fade-in">
+                  <Image
+                    src="/spaceCraft.jpg"
+                    alt="3D Robot mascot"
+                    layout="fill"
+                    style={{ objectFit: 'cover' }}
+                    className="filter drop-shadow-2xl rounded-lg"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="lg:w-1/2 flex justify-center lg:justify-end">
-            <div className="relative w-64 h-64 md:w-[90%] md:h-[400px] animate-fade-in">
-          <Image
-            src="/spaceCraft.jpg"
-            alt="3D Robot mascot"
-            layout="fill"
-            style={{ objectFit: 'cover' }}
-            className="filter drop-shadow-2xl rounded-lg"
-          />
-            </div>
-          </div>
-        </div>
           </main>
         </div>
       </div>
@@ -165,14 +213,16 @@ export default function Home() {
       {/* Goals */}
       <div
         ref={goalsRef}
-        className="text-white overflow-hidden py-16 w-full"
+        className="text-white overflow-hidden py-16 w-full relative"
         style={{
           backgroundColor: 'black',
         }}
       >
+        <Meteors number={30} />
         <div className="relative z-10">
           <main className="container mx-auto px-4 py-20">
             <div className="text-center">
+            <Meteors number={10} />
               <h2 className="text-5xl md:text-6xl font-bold mb-8">
                 Our {' '}
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600">
@@ -182,18 +232,82 @@ export default function Home() {
               <p className="max-w-2xl mx-auto text-lg text-gray-300 mb-10">
                 We strive to lead the aerospace sector by providing state-of-the-art, high-altitude technology that is sustainable, effective, and innovative. Our primary goal is to redefine aerospace capabilities in defense and commercial sectors through cutting-edge advancements.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div className="bg-gray-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-transform">
-                  <h3 className="text-xl font-bold mb-4">Goal 1</h3>
-                  <p>Leading the aerospace sector with advanced high-altitude platforms and near-space launch solutions.</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                 
+                <ShineBorder className="relative bg-black border-slate-900 border-2 p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform" color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}>
+               
+                  <h3 className="text-xl font-bold text-white mb-4">Innovation and Excellence</h3>
+                  <p className="text-gray-300">
+                  Redefining aerospace technologies by pushing the boundaries of innovation and delivering state-of-the-art solutions for high-altitude operations.
+                  </p>
+                </ShineBorder>
+                <ShineBorder className="relative bg-black border-slate-900 border-2 p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform" color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}>
+                
+                  <h3 className="text-xl font-bold text-white mb-4">Sustainability and Cost-Effectiveness</h3>
+                  <p className="text-gray-300">
+                  Providing sustainable and cost-effective technologies that offer significant value for defense, research, and commercial enterprises.
+                  </p>
+                </ShineBorder>
+                <ShineBorder className="relative bg-black border-slate-900 border-2 p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform"  color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}>
+                
+                  <h3 className="text-xl font-bold text-white mb-4">Collaboration and Growth</h3>
+                  <p className="text-gray-300">
+                  Collaborating with global institutions and research bodies to foster growth and innovation in the aerospace industry.
+                  </p>
+                </ShineBorder>
+            </div>
+            </div>
+          </main>
+        </div>
+      </div>
+
+      {/* Meet the Founders */}
+      <div
+        ref={foundersRef}
+        className="text-white overflow-hidden py-16 w-full"
+        style={{
+          backgroundColor: 'black',
+        }}
+      >
+        <div className="relative z-10">
+          <main className="container mx-auto px-4 py-20">
+            <div className="text-center">
+              <h2 className="text-5xl md:text-6xl font-bold mb-8">
+                Meet the {' '}
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600">
+                  Founders
+                </span>
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-48 h-48 mb-4">
+                    <Image
+                      src="/founder2.jpg"
+                      alt="Logeshwaran M"
+                      width={192}
+                      height={192}
+                      className="rounded-full object-cover shadow-lg"
+                    />
+                  </div>
+                  <h3 className="text-2xl font-bold">Logeshwaran M</h3>
+                  <p className="text-gray-400 mt-2">
+                    Founder & CEO<br></br> Bachelors in Aerospace Engineering , KCG College of Technology
+                  </p>
                 </div>
-                <div className="bg-gray-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-transform">
-                  <h3 className="text-xl font-bold mb-4">Goal 2</h3>
-                  <p>Providing sustainable and cost-effective technologies for ISR and research purposes.</p>
-                </div>
-                <div className="bg-gray-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-transform">
-                  <h3 className="text-xl font-bold mb-4">Goal 3</h3>
-                  <p>Collaborating with defense agencies and research institutions to further aerospace innovation.</p>
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-48 h-48 mb-4">
+                    <Image
+                      src="/founder1.jpg"
+                      alt="Hariharan R"
+                      width={192}
+                      height={192}
+                      className="rounded-full object-cover shadow-lg"
+                    />
+                  </div>
+                  <h3 className="text-2xl font-bold">Hariharan R</h3>
+                  <p className="text-gray-400 mt-2">
+                    Founder & CTO<br></br> Masters in Aerospace Engineering, Anna University ( MIT Campus )
+                  </p>
                 </div>
               </div>
             </div>
@@ -252,7 +366,7 @@ export default function Home() {
             </div>
             <button
               type="submit"
-              className="w-full py-3 px-6 rounded-md bg-cyan-500 text-white font-bold hover:bg-cyan-600 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+              className="w-full py-3 px-6 rounded-md bg-cyan-500 text-white font-bold hover:bg-cyan-600 transform focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
             >
               Send Message
             </button>
@@ -337,6 +451,7 @@ export default function Home() {
             <p className="text-gray-500 text-xs mt-2">
               &copy; 2024 Dashagriv Aerospace Technology. All rights reserved.
             </p>
+         
           </div>
         </div>
       </footer>
