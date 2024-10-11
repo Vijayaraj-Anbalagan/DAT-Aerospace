@@ -9,6 +9,7 @@ import { RainbowButton } from '@/components/ui/rainbow-button';
 import ShinyButton from '@/components/ui/shiny-button';
 import SparklesText from '@/components/ui/sparkles-text';
 import Particlesdemo from '@/components/ui/particles';
+import { FaLinkedin } from 'react-icons/fa'; 
 
 const poppins = Raleway({ weight: ['400', '600', '700'], subsets: ['latin'] });
 
@@ -75,73 +76,46 @@ export default function Home() {
     <div
       className={`relative overflow-hidden bg-gradient-to-b from-black to-gray-900 text-white ${poppins.className}`}
     >
-     <Particlesdemo className="absolute inset-0 z-0" quantity={50}/>
-      <header className="flex justify-between items-center py-6 px-6 lg:px-12 fixed z-40 w-full bg-opacity-80">
-        <div className="flex items-center">
-          <Image
-            loading="lazy"
-            src="/logo.png"
-            alt="Dashagriv Logo"
-            width={200}
-            height={200}
-            className="hidden lg:block"
-          />
-        </div>
-        <nav className="hidden md:block px-4 py-2 bg-gray-800 rounded-full border border-gray-700">
-          <ul className="flex space-x-6">
-            {['Home', 'About Us', 'Goals', 'Meet the Founders', 'Incubation', 'Contact us'].map((item) => (
-              <li key={item}>
-                <button
-                  onClick={() => {
-                    if (item === 'Home') scrollToSection(homeRef);
-                    if (item === 'About Us') scrollToSection(aboutRef);
-                    if (item === 'Goals') scrollToSection(goalsRef);
-                    if (item === 'Meet the Founders') scrollToSection(foundersRef);
-                    if (item === 'Incubation') scrollToSection(incubationRef);
-                    if (item === 'Contact us') scrollToSection(contactUsRef);
-                  }}
-                  className={`transition-colors ${
-                    activeSection === item ? 'text-cyan-400 font-bold transition-all' : 'hover:text-cyan-400'
-                  }`}
-                >
-                  {item}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <ShinyButton className="hidden lg:block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors">
-          Talk to us
-        </ShinyButton>
-            
+     <Particlesdemo className="absolute inset-0 z-0" quantity={75} staticity={60} ease={60}/>
+     <header className="flex justify-between items-center py-6 px-6 lg:px-12 fixed z-40 w-full bg-opacity-80">
+  {/* Logo on the left */}
+  <div className="flex items-center cursor-pointer" onClick={() => scrollToSection(homeRef)}>
+    <Image
+      loading="lazy"
+      src="/logo.png"
+      alt="Dashagriv Logo"
+      width={150}  // Increase the size of the logo for better visibility
+      height={150}
+      className="block"
+    />
+  </div>
 
-        {/* Mobile Nav */}
-<div className="lg:hidden fixed top-4 right-4 z-50">
-  <button className="text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-8 w-8"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
+  {/* Hamburger Button for Mobile Menu */}
+  <div className="lg:hidden fixed top-4 right-4 z-50 flex items-center gap-4">
+    <button
+      className="text-white"
+      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M4 6h16M4 12h16m-7 6h7"
-      />
-    </svg>
-  </button>
-</div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-8 w-8"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M4 6h16M4 12h16m-7 6h7"
+        />
+      </svg>
+    </button>
+  </div>
 
-{/* Mobile Nav Menu */}
-{isMobileMenuOpen && (
-  <div
-    className="lg:hidden fixed inset-0 bg-black bg-opacity-90 z-40 flex flex-col items-center justify-center transition-opacity duration-500 ease-in-out"
-    style={{ animation: 'fadeIn 0.3s ease-in-out forwards' }}
-  >
-    <ul className="space-y-6 text-center">
+  {/* Desktop Navigation */}
+  <nav className="hidden md:block px-4 py-2 bg-gray-800 rounded-full border border-gray-700">
+    <ul className="flex space-x-6">
       {['Home', 'About Us', 'Goals', 'Meet the Founders', 'Incubation', 'Contact us'].map((item) => (
         <li key={item}>
           <button
@@ -152,37 +126,27 @@ export default function Home() {
               if (item === 'Meet the Founders') scrollToSection(foundersRef);
               if (item === 'Incubation') scrollToSection(incubationRef);
               if (item === 'Contact us') scrollToSection(contactUsRef);
-              setIsMobileMenuOpen(false);
             }}
-            className="text-white text-2xl font-bold hover:text-cyan-400 transition-all "
+            className={`transition-colors ${
+              activeSection === item
+                ? 'text-cyan-400 font-bold transition-all'
+                : 'hover:text-cyan-400'
+            }`}
           >
             {item}
           </button>
         </li>
       ))}
     </ul>
-    <button
-      className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full mt-8 transform hover:scale-105 transition-transform"
-      onClick={() => setIsMobileMenuOpen(false)}
-    >
-      Talk to us
-    </button>
-  </div>
-)}
+  </nav>
 
-<style jsx>{`
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-`}</style>
+  {/* Talk to Us Button for Desktop */}
+  <ShinyButton className="hidden lg:block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors">
+    Talk to us
+  </ShinyButton>
+</header>
 
-        
-      </header>
+
       <div
         ref={homeRef}
         className="min-h-screen relative z-10 flex justify-center items-center px-4 py-32 sm:py-40"
@@ -345,59 +309,82 @@ export default function Home() {
 
       {/* Meet the Founders */}
       <div
-        ref={foundersRef}
-        className="text-white overflow-hidden py-16 w-full"
-        style={{
-          backgroundColor: 'black',
-        }}
-      >
-        <div className="relative z-10">
-          <main className="container mx-auto px-4 py-20">
-            <div className="text-center">
-              <h2 className="text-5xl md:text-6xl font-bold mb-8">
-                Meet the {' '}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600">
-                  Founders
-                </span>
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-48 h-48 mb-4">
-                    <Image
-                      src="/founder2.jpg"
-                      alt="Logeshwaran M"
-                      loading="lazy"
-                      width={192}
-                      height={192}
-                      className="rounded-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-2xl font-bold">Logeshwaran M</h3>
-                  <p className="text-gray-400 mt-2">
-                    Founder & CEO<br></br>Aerospace Engineer , KCG Alumnus
-                  </p>
+  ref={foundersRef}
+  className="text-white overflow-hidden py-16 w-full"
+  style={{
+    backgroundColor: 'black',
+  }}
+>
+  <div className="relative z-10">
+    <main className="container mx-auto px-4 py-20">
+      <div className="text-center">
+        <h2 className="text-5xl md:text-6xl font-bold mb-8">
+          Meet the{' '}
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600">
+            Founders
+          </span>
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {/* Founder 1 */}
+          <div className="flex flex-col items-center text-center group relative">
+            <div className="w-48 h-48 mb-4 relative">
+              <Image
+                src="/founder2.jpg"
+                alt="Logeshwaran M"
+                loading="lazy"
+                width={192}
+                height={192}
+                className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
+              />
+              <a
+                href="https://www.linkedin.com/in/logeshwaran-linkedin"  // Replace with the actual LinkedIn profile link
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              >
+                <div className="bg-cyan-500 p-3 rounded-full">
+                  <FaLinkedin className="h-6 w-6 text-white" />
                 </div>
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-48 h-48 mb-4">
-                    <Image
-                      src="/founder1.jpg"
-                      alt="Hariharan R"
-                      loading="lazy"
-                      width={192}
-                      height={192}
-                      className="rounded-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-2xl font-bold">Hariharan R</h3>
-                  <p className="text-gray-400 mt-2">
-                    Founder & CTO<br></br> Masters in Aerospace Engineering, MIT Campus
-                  </p>
-                </div>
-              </div>
+              </a>
             </div>
-          </main>
+            <h3 className="text-2xl font-bold">Logeshwaran M</h3>
+            <p className="text-gray-400 mt-2">
+              Founder & CEO<br></br>Aerospace Engineer, KCG Alumnus
+            </p>
+          </div>
+
+          {/* Founder 2 */}
+          <div className="flex flex-col items-center text-center group relative">
+            <div className="w-48 h-48 mb-4 relative">
+              <Image
+                src="/founder1.jpg"
+                alt="Hariharan R"
+                loading="lazy"
+                width={192}
+                height={192}
+                className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
+              />
+              <a
+                href="https://www.linkedin.com/in/hariharan-linkedin"  // Replace with the actual LinkedIn profile link
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              >
+                <div className="bg-cyan-500 p-3 rounded-full">
+                  <FaLinkedin className="h-6 w-6 text-white" />
+                </div>
+              </a>
+            </div>
+            <h3 className="text-2xl font-bold">Hariharan R</h3>
+            <p className="text-gray-400 mt-2">
+              Founder & CTO<br></br>Masters in Aerospace Engineering, MIT Campus
+            </p>
+          </div>
         </div>
       </div>
+    </main>
+  </div>
+</div>
 
        {/* Incubation Section */}
        <div
@@ -506,7 +493,7 @@ export default function Home() {
       <footer className="bg-gray-900 text-white py-12 px-4 sm:px-12">
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">DAT</h3>
+            <h3 className="text-xl font-bold mb-4">Dashagriv Aerospace Technology</h3>
             <p className="text-gray-400">
               Dashagriv Aerospace Technology Private Limited (DAT) is dedicated to advancing aerospace technology for near-space applications.
             </p>
@@ -558,7 +545,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col items-center justify-center">
             <p className="text-gray-400 text-sm">
-              Made with ❤️ by
+              Made with ❤ by
             </p>
             <SparklesText text="SocialSync" className='text-4xl' />
             
