@@ -113,6 +113,51 @@ export default function Home() {
     </button>
   </div>
 
+  {isMobileMenuOpen && (
+  <div
+    className="lg:hidden fixed inset-0 bg-black bg-opacity-90 z-40 flex flex-col items-center justify-center transition-opacity duration-500 ease-in-out"
+    style={{ animation: 'fadeIn 0.3s ease-in-out forwards' }}
+  >
+    <ul className="space-y-6 text-center">
+      {['Home', 'About Us', 'Goals', 'Meet the Founders', 'Incubation', 'Contact us'].map((item) => (
+        <li key={item}>
+          <button
+            onClick={() => {
+              if (item === 'Home') scrollToSection(homeRef);
+              if (item === 'About Us') scrollToSection(aboutRef);
+              if (item === 'Goals') scrollToSection(goalsRef);
+              if (item === 'Meet the Founders') scrollToSection(foundersRef);
+              if (item === 'Incubation') scrollToSection(incubationRef);
+              if (item === 'Contact us') scrollToSection(contactUsRef);
+              setIsMobileMenuOpen(false);
+            }}
+            className="text-white text-2xl font-bold hover:text-cyan-400 transition-transform transform hover:scale-110"
+          >
+            {item}
+          </button>
+        </li>
+      ))}
+    </ul>
+    <button
+      className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full mt-8 transform hover:scale-105 transition-transform"
+      onClick={() => setIsMobileMenuOpen(false)}
+    >
+      Talk to us
+    </button>
+  </div>
+)}
+
+<style jsx>{`
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`}</style>
+
   {/* Desktop Navigation */}
   <nav className="hidden md:block px-4 py-2 bg-gray-800 rounded-full border border-gray-700">
     <ul className="flex space-x-6">
@@ -337,7 +382,7 @@ export default function Home() {
                 className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
               />
               <a
-                href="https://www.linkedin.com/in/logeshwaran-linkedin"  // Replace with the actual LinkedIn profile link
+                href="https://www.linkedin.com/in/logeshwaran-mahendran-ba27572b7/"  // Replace with the actual LinkedIn profile link
                 target="_blank"
                 rel="noopener noreferrer"
                 className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -365,7 +410,7 @@ export default function Home() {
                 className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
               />
               <a
-                href="https://www.linkedin.com/in/hariharan-linkedin"  // Replace with the actual LinkedIn profile link
+                href="https://www.linkedin.com/in/hariharan-r-4a9a3b20b/"  // Replace with the actual LinkedIn profile link
                 target="_blank"
                 rel="noopener noreferrer"
                 className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
