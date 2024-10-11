@@ -9,7 +9,6 @@ import { RainbowButton } from '@/components/ui/rainbow-button';
 import ShinyButton from '@/components/ui/shiny-button';
 import SparklesText from '@/components/ui/sparkles-text';
 import Particlesdemo from '@/components/ui/particles';
-import Head from 'next/head';
 
 const poppins = Raleway({ weight: ['400', '600', '700'], subsets: ['latin'] });
 
@@ -46,7 +45,7 @@ export default function Home() {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
     sections.forEach((section) => {
@@ -73,28 +72,14 @@ export default function Home() {
 
   return (
 
-    <>
-    <Head>
-        <title>Dashagriv Aerospace Technology - Pioneering Near-Space Innovations</title>
-        <meta name="title" content="Dashagriv Aerospace Technology - Pioneering Near-Space Innovations" />
-        <meta name="description" content="Dashagriv Aerospace Technology (DAT) is dedicated to advancing aerospace technology for near-space applications. We develop high-altitude platforms, providing sustainable and cost-effective solutions for defense, research, and commercial enterprises." />
-        <meta name="keywords" content="Dashagriv, Aerospace Technology, Near-Space, HAPS, High-Altitude Platforms, Defense, Research, Aerospace Solutions, Incubation, ISR, Innovation" />
-        <meta name="robots" content="index, follow" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="author" content="Dashagriv Aerospace Technology" />
-        <meta property="og:title" content="Dashagriv Aerospace Technology - Pioneering Near-Space Innovations" />
-        <meta property="og:description" content="Advancing aerospace technology with high-altitude platforms designed for near-space applications. Sustainable solutions for defense, research, and commercial enterprises." />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Dashagriv Aerospace Technology - Pioneering Near-Space Innovations" />
-        <meta name="twitter:description" content="We develop high-altitude platforms designed for near-space, providing sustainable aerospace solutions for various industries." />
-      </Head>
     <div
       className={`relative overflow-hidden bg-gradient-to-b from-black to-gray-900 text-white ${poppins.className}`}
     >
-     <Particlesdemo className="absolute inset-0 z-0" quantity={70}/>
+     <Particlesdemo className="absolute inset-0 z-0" quantity={50}/>
       <header className="flex justify-between items-center py-6 px-6 lg:px-12 fixed z-40 w-full bg-opacity-80">
         <div className="flex items-center">
           <Image
+            loading="lazy"
             src="/logo.png"
             alt="Dashagriv Logo"
             width={200}
@@ -169,7 +154,7 @@ export default function Home() {
               if (item === 'Contact us') scrollToSection(contactUsRef);
               setIsMobileMenuOpen(false);
             }}
-            className="text-white text-2xl font-bold hover:text-cyan-400 transition-transform transform hover:scale-110"
+            className="text-white text-2xl font-bold hover:text-cyan-400 transition-all "
           >
             {item}
           </button>
@@ -300,8 +285,9 @@ export default function Home() {
                     src='/spacecraft.jpg'
                     alt="3D Robot mascot"
                     layout='fill'
+                    loading="lazy"
                     style={{ objectFit: 'cover' }}
-                    className="filter drop-shadow-2xl rounded-lg"
+                    className="filter rounded-lg"
                   />
                 </div>
               </div>
@@ -322,7 +308,6 @@ export default function Home() {
         <div className="relative z-10">
           <main className="container mx-auto px-4 py-20">
             <div className="text-center">
-              <Meteors number={10} />
               <h2 className="text-5xl md:text-6xl font-bold mb-8">
                 Our {' '}
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600">
@@ -334,19 +319,19 @@ export default function Home() {
               </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <ShineBorder className="relative bg-black border-slate-900 border-2 p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform" color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}>
+                <ShineBorder className="relative bg-black border-slate-900 border-2 p-6 rounded-lg" color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}>
                   <h3 className="text-xl font-bold text-white mb-4">Innovation and Excellence</h3>
                   <p className="text-gray-300">
                     Redefining aerospace technologies by pushing the boundaries of innovation and delivering state-of-the-art solutions for high-altitude operations.
                   </p>
                 </ShineBorder>
-                <ShineBorder className="relative bg-black border-slate-900 border-2 p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform" color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}>
+                <ShineBorder className="relative bg-black border-slate-900 border-2 p-6 rounded-lg" color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}>
                   <h3 className="text-xl font-bold text-white mb-4">Sustainability and Cost-Effectiveness</h3>
                   <p className="text-gray-300">
                     Providing sustainable and cost-effective technologies that offer significant value for defense, research, and commercial enterprises.
                   </p>
                 </ShineBorder>
-                <ShineBorder className="relative bg-black border-slate-900 border-2 p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform"  color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}>
+                <ShineBorder className="relative bg-black border-slate-900 border-2 p-6 rounded-lg"  color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}>
                   <h3 className="text-xl font-bold text-white mb-4">Collaboration and Growth</h3>
                   <p className="text-gray-300">
                     Collaborating with global institutions and research bodies to foster growth and innovation in the aerospace industry.
@@ -381,9 +366,10 @@ export default function Home() {
                     <Image
                       src="/founder2.jpg"
                       alt="Logeshwaran M"
+                      loading="lazy"
                       width={192}
                       height={192}
-                      className="rounded-full object-cover shadow-lg"
+                      className="rounded-full object-cover"
                     />
                   </div>
                   <h3 className="text-2xl font-bold">Logeshwaran M</h3>
@@ -396,9 +382,10 @@ export default function Home() {
                     <Image
                       src="/founder1.jpg"
                       alt="Hariharan R"
+                      loading="lazy"
                       width={192}
                       height={192}
-                      className="rounded-full object-cover shadow-lg"
+                      className="rounded-full object-cover"
                     />
                   </div>
                   <h3 className="text-2xl font-bold">Hariharan R</h3>
@@ -433,7 +420,6 @@ export default function Home() {
 
       {/* Contact Us */}
       <section ref={contactUsRef} className="bg-gradient-to-br from-gray-900 to-black text-white px-6 py-20 sm:py-28 relative overflow-hidden">
-        <Particlesdemo className="absolute inset-0 z-0" quantity={30}/>
   <div className="max-w-4xl mx-auto">
     <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center justify-center">
       
@@ -495,7 +481,7 @@ export default function Home() {
 
       {/* Map Section */}
       <div className="w-full lg:w-1/2 space-y-4 lg:space-y-8">
-        <div className="w-full h-72 lg:h-80 rounded-xl overflow-hidden shadow-xl">
+        <div className="w-full h-72 lg:h-80 rounded-xl overflow-hidden">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1371.2306383894088!2d80.23911793542396!3d12.92119505790069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525c8cd40b76e7%3A0x681487984b55f7bb!2sKCG%20College%20of%20Technology!5e0!3m2!1sen!2sin!4v1728322005629!5m2!1sen!2sin"
             width="100%"
@@ -584,6 +570,6 @@ export default function Home() {
         </div>
       </footer>
     </div>
-    </>
+    
   );
 }
