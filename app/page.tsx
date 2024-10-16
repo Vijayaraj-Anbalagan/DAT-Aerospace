@@ -25,16 +25,19 @@ export default function Home() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
     const sections = [
       { ref: homeRef, name: 'Home' },
       { ref: aboutRef, name: 'About Us' },
       { ref: goalsRef, name: 'Goals' },
-      { ref: foundersRef, name: 'Meet the Founders' },
+      { ref: foundersRef, name: 'Our Team' },
       { ref: incubationRef, name: 'Incubation' },
       { ref: contactUsRef, name: 'Contact us' },
     ];
-
+  
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -48,13 +51,13 @@ export default function Home() {
       },
       { threshold: 0.2 }
     );
-
+  
     sections.forEach((section) => {
       if (section.ref.current) {
         observer.observe(section.ref.current);
       }
     });
-
+  
     return () => {
       sections.forEach((section) => {
         if (section.ref.current) {
@@ -63,6 +66,50 @@ export default function Home() {
       });
     };
   }, []);
+  
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Set isScrolled to true if user scrolled past a certain point (e.g., 100px)
+      if (currentScrollY > 100) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+
+      // Determine whether to show or hide the navbar based on scroll direction
+      if (currentScrollY > lastScrollY) {
+        setShowNavbar(false);
+      } else {
+        setShowNavbar(true);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    // Attach the scroll event listener
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+      setShowNavbar(scrollPosition > currentScroll || currentScroll < 10);
+      setScrollPosition(currentScroll);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrollPosition]);
 
   // Scroll to the referenced section
   const scrollToSection = (ref: React.RefObject<HTMLElement>) => {
@@ -71,125 +118,154 @@ export default function Home() {
     }
   };
 
+
+
   return (
 
     <div
       className={`relative overflow-hidden bg-gradient-to-b from-black to-gray-900 text-white ${poppins.className}`}
     >
      <Particlesdemo className="absolute inset-0 z-0" quantity={75} staticity={60} ease={60}/>
-     <header className="flex justify-between items-center py-6 px-6 lg:px-12 fixed z-40 w-full bg-opacity-80">
-  {/* Logo on the left */}
-  <div className="flex items-center cursor-pointer" onClick={() => scrollToSection(homeRef)}>
-    <Image
-      loading="lazy"
-      src="/logo.png"
-      alt="Dashagriv Logo"
-      width={150}  // Increase the size of the logo for better visibility
-      height={150}
-      className="block"
-    />
-  </div>
+      {/* Navbar */}
+      <header
+  className={`fixed top-0 w-full z-40 transition-all duration-300 ease-in-out ${
+    isScrolled ? 'bg-black bg-opacity-80 backdrop-blur-lg' : 'bg-transparent'
+  } py-4 px-6 lg:px-12`}
+>
+  <nav className="max-w-[85rem] w-full mx-auto flex items-center justify-between">
+    {/* Logo */}
+    <div className="flex items-center cursor-pointer" onClick={() => scrollToSection(homeRef)}>
+      <Image
+        loading="lazy"
+        src="/logo.png"
+        alt="Dashagriv Logo"
+        width={150}
+        height={150}
+        className="block"
+      />
+    </div>
+    
 
-  {/* Hamburger Button for Mobile Menu */}
-  <div className="lg:hidden fixed top-4 right-4 z-50 flex items-center gap-4">
-    <button
-      className="text-white"
-      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-8 w-8"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
+    {/* Hamburger Button for Mobile Menu */}
+    <div className="sm:hidden">
+      <button
+        onClick={() => {
+          setIsMobileMenuOpen(!isMobileMenuOpen);
+          document.body.style.overflow = isMobileMenuOpen ? '' : 'hidden';
+        }}
+        className="lg:hidden text-white focus:outline-none"
       >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M4 6h16M4 12h16m-7 6h7"
-        />
-      </svg>
-    </button>
-  </div>
-
-  {isMobileMenuOpen && (
-  <div
-    className="lg:hidden fixed inset-0 bg-black bg-opacity-90 z-40 flex flex-col items-center justify-center transition-opacity duration-500 ease-in-out"
-    style={{ animation: 'fadeIn 0.3s ease-in-out forwards' }}
-  >
-    <ul className="space-y-6 text-center">
-      {['Home', 'About Us', 'Goals', 'Meet the Founders', 'Incubation', 'Contact us'].map((item) => (
-        <li key={item}>
-          <button
-            onClick={() => {
-              if (item === 'Home') scrollToSection(homeRef);
-              if (item === 'About Us') scrollToSection(aboutRef);
-              if (item === 'Goals') scrollToSection(goalsRef);
-              if (item === 'Meet the Founders') scrollToSection(foundersRef);
-              if (item === 'Incubation') scrollToSection(incubationRef);
-              if (item === 'Contact us') scrollToSection(contactUsRef);
-              setIsMobileMenuOpen(false);
-            }}
-            className="text-white text-2xl font-bold hover:text-cyan-400 transition-transform transform hover:scale-110"
+        {isMobileMenuOpen ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            {item}
-          </button>
-        </li>
-      ))}
-    </ul>
-    <button
-      className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full mt-8 transform hover:scale-105 transition-transform"
-      onClick={() => setIsMobileMenuOpen(false)}
-    >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        )}
+      </button>
+    </div>
+
+    {/* Mobile Menu */}
+    {isMobileMenuOpen && (
+      <div className="lg:hidden fixed top-16 right-4 bg-black bg-opacity-90 z-50 p-6 rounded-lg shadow-lg transition-opacity duration-500 ease-in-out">
+        <ul className="space-y-4 text-center">
+          {['Home', 'About Us', 'Goals', 'Our Team', 'Incubation', 'Contact Us'].map((item) => (
+            <li key={item}>
+              <button
+                onClick={() => {
+                  if (item === 'Home') scrollToSection(homeRef);
+                  if (item === 'About Us') scrollToSection(aboutRef);
+                  if (item === 'Goals') scrollToSection(goalsRef);
+                  if (item === 'Our Team') scrollToSection(foundersRef);
+                  if (item === 'Incubation') scrollToSection(incubationRef);
+                  if (item === 'Contact Us') scrollToSection(contactUsRef);
+                  setIsMobileMenuOpen(false);
+                  document.body.style.overflow = '';
+                }}
+                className="text-white text-lg font-medium hover:text-cyan-400 transition-transform transform hover:scale-105"
+              >
+                {item}
+              </button>
+            </li>
+          ))}
+        </ul>
+        <button
+          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full mt-6 transform hover:scale-105 transition-transform w-full"
+          onClick={() => {
+            setIsMobileMenuOpen(false);
+            document.body.style.overflow = '';
+          }}
+        >
+          Talk to us
+        </button>
+      </div>
+    )}
+
+    {/* Desktop Navigation */}
+    <nav className="hidden lg:block px-4 py-2 rounded-full border border-gray-700">
+      <ul className="flex space-x-6">
+        {['Home', 'About Us', 'Goals', 'Our Team', 'Incubation', 'Contact Us'].map((item) => (
+          <li key={item}>
+            <button
+              onClick={() => {
+                if (item === 'Home') scrollToSection(homeRef);
+                if (item === 'About Us') scrollToSection(aboutRef);
+                if (item === 'Goals') scrollToSection(goalsRef);
+                if (item === 'Our Team') scrollToSection(foundersRef);
+                if (item === 'Incubation') scrollToSection(incubationRef);
+                if (item === 'Contact Us') scrollToSection(contactUsRef);
+              }}
+              className={`transition-colors ${
+                activeSection === item ? 'text-cyan-400 font-bold' : 'hover:text-cyan-400'
+              }`}
+            >
+              {item}
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      {/* Talk to Us Button for Mobile */}
+      <ShinyButton className="block lg:hidden bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors mt-4">
+        Talk to us
+      </ShinyButton>
+
+    </nav>
+
+    {/* Talk to Us Button for Desktop */}
+    <ShinyButton className="hidden lg:block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors">
       Talk to us
-    </button>
-  </div>
-)}
-
-<style jsx>{`
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-`}</style>
-
-  {/* Desktop Navigation */}
-  <nav className="hidden md:block px-4 py-2 bg-gray-800 rounded-full border border-gray-700">
-    <ul className="flex space-x-6">
-      {['Home', 'About Us', 'Goals', 'Meet the Founders', 'Incubation', 'Contact us'].map((item) => (
-        <li key={item}>
-          <button
-            onClick={() => {
-              if (item === 'Home') scrollToSection(homeRef);
-              if (item === 'About Us') scrollToSection(aboutRef);
-              if (item === 'Goals') scrollToSection(goalsRef);
-              if (item === 'Meet the Founders') scrollToSection(foundersRef);
-              if (item === 'Incubation') scrollToSection(incubationRef);
-              if (item === 'Contact us') scrollToSection(contactUsRef);
-            }}
-            className={`transition-colors ${
-              activeSection === item
-                ? 'text-cyan-400 font-bold transition-all'
-                : 'hover:text-cyan-400'
-            }`}
-          >
-            {item}
-          </button>
-        </li>
-      ))}
-    </ul>
+    </ShinyButton>
   </nav>
-
-  {/* Talk to Us Button for Desktop */}
-  <ShinyButton className="hidden lg:block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors">
-    Talk to us
-  </ShinyButton>
 </header>
+
+
+
+      
 
 
       <div
@@ -363,13 +439,17 @@ export default function Home() {
   <div className="relative z-10">
     <main className="container mx-auto px-4 py-20">
       <div className="text-center">
-        <h2 className="text-5xl md:text-6xl font-bold mb-8">
+        {/* Main Team Heading */}
+        <h2 className="text-5xl md:text-6xl font-bold mb-12">
           Meet the{' '}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600">
-            Founders
+            Team
           </span>
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+
+        {/* Founders Section */}
+        <h3 className="text-4xl font-bold mb-10 text-teal-400">Founders</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 mb-16">
           {/* Founder 1 */}
           <div className="flex flex-col items-center text-center group relative">
             <div className="w-48 h-48 mb-4 relative">
@@ -377,12 +457,12 @@ export default function Home() {
                 src="/founder2.jpg"
                 alt="Logeshwaran M"
                 loading="lazy"
-                width={192}
-                height={192}
+                width={292}
+                height={292}
                 className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
               />
               <a
-                href="https://www.linkedin.com/in/logeshwaran-mahendran-ba27572b7/"  // Replace with the actual LinkedIn profile link
+                href="https://www.linkedin.com/in/logeshwaran-mahendran-ba27572b7/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -394,7 +474,7 @@ export default function Home() {
             </div>
             <h3 className="text-2xl font-bold">Logeshwaran M</h3>
             <p className="text-gray-400 mt-2">
-              Founder & CEO<br></br>Aerospace Engineer, KCG Alumnus
+              Founder & CEO<br />Aerospace Engineer, KCG Alumnus
             </p>
           </div>
 
@@ -405,12 +485,12 @@ export default function Home() {
                 src="/founder1.jpg"
                 alt="Hariharan R"
                 loading="lazy"
-                width={192}
-                height={192}
+                width={292}
+                height={292}
                 className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
               />
               <a
-                href="https://www.linkedin.com/in/hariharan-r-4a9a3b20b/"  // Replace with the actual LinkedIn profile link
+                href="https://www.linkedin.com/in/hariharan-r-4a9a3b20b/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -422,7 +502,95 @@ export default function Home() {
             </div>
             <h3 className="text-2xl font-bold">Hariharan R</h3>
             <p className="text-gray-400 mt-2">
-              Founder & CTO<br></br>Masters in Aerospace Engineering, MIT Campus
+              Founder & CTO<br />Masters in Aerospace Engineering, MIT Campus
+            </p>
+          </div>
+        </div>
+
+        {/* Core Team Section */}
+        <h3 className="text-4xl font-bold mb-10 text-teal-400">Core Team</h3>
+        <div className="flex flex-wrap justify-center gap-12">
+          {/* Srikanth's Card */}
+          <div className="flex flex-col items-center text-center group relative w-64">
+            <div className="w-48 h-48 mb-4 relative">
+              <Image
+                src="/srikanth.jpg"
+                alt="Srikanth R"
+                loading="lazy"
+                width={192}
+                height={192}
+                className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
+              />
+              <a
+                href="https://www.linkedin.com/in/srikanth-r-9974b521a/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              >
+                <div className="bg-cyan-500 p-3 rounded-full">
+                  <FaLinkedin className="h-6 w-6 text-white" />
+                </div>
+              </a>
+            </div>
+            <h4 className="text-2xl font-bold">Srikanth R</h4>
+            <p className="text-gray-400 mt-2">
+              Aerospace Engineer <br></br>( Space Vehicle Dynamics )<br />Masters in Aerospace Engineering, Coventry University, UK
+            </p>
+          </div>
+
+          {/* Jayashree's Card */}
+          <div className="flex flex-col items-center text-center group relative w-64">
+            <div className="w-48 h-48 mb-4 relative">
+              <Image
+                src="/jayashree.jpg"
+                alt="Jayashree B"
+                loading="lazy"
+                width={192}
+                height={192}
+                className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
+              />
+              <a
+                href="https://www.linkedin.com/in/jayashree-b-67950621a/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              >
+                <div className="bg-cyan-500 p-3 rounded-full">
+                  <FaLinkedin className="h-6 w-6 text-white" />
+                </div>
+              </a>
+            </div>
+            <h4 className="text-2xl font-bold">Jayashree B</h4>
+            <p className="text-gray-400 mt-2">
+              Aerospace Engineer<br></br> ( Design and Flight Testing )<br />Masters in Aerospace Engineering, Coventry University, UK
+            </p>
+          </div>
+
+          {/* Srinivasan's Card */}
+          <div className="flex flex-col items-center text-center group relative w-64">
+            <div className="w-48 h-48 mb-4 relative">
+              <Image
+                src="/srinivasan.jpg"
+                alt="Srinivasan A"
+                loading="lazy"
+                width={192}
+                height={192}
+                className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
+              />
+              <a
+                href="https://www.linkedin.com/in/a-srinivasan-8a64a9297"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              >
+                <div className="bg-cyan-500 p-3 rounded-full">
+                  <FaLinkedin className="h-6 w-6 text-white" />
+                </div>
+              </a>
+            </div>
+            <h4 className="text-2xl font-bold">Srinivasan A</h4>
+            <p className="text-gray-400 mt-2">
+              Aerospace Engineer <br></br> ( Structural and Material Design ) 
             </p>
           </div>
         </div>
@@ -431,25 +599,43 @@ export default function Home() {
   </div>
 </div>
 
-       {/* Incubation Section */}
-       <div
-        ref={incubationRef}
-        className="bg-black text-white px-4 py-8 w-full"
-      >
-        <div className="container mx-auto text-center flex flex-col items-center">
-          <Image
-            src="/kcg_logo.png"
-            alt="KCG College of Technology Incubation Center Logo"
-            width={240}
-            height={240}
-            className="mb-4"
-          />
-          <p className="text-lg text-gray-300">
-            Incubated at KCG Innovation Incubation and Entrepreneurship Center
-          </p>
-        </div>
-      </div>
 
+     {/* Incubation Section */}
+<div ref={incubationRef} className="bg-gradient-to-b from-gray-900 to-black text-white px-4 py-16 w-full">
+  <div className="container mx-auto text-center flex flex-col items-center">
+    <Image
+      src="/kcg_logo.png"
+      alt="KCG College of Technology Incubation Center Logo"
+      width={240}
+      height={240}
+      className="mb-8 rounded-lg shadow-lg"
+    />
+    <p className="text-xl font-light text-gray-400 mb-16">
+      Incubated at KCG Innovation Incubation and Entrepreneurship Center
+    </p>
+  </div>
+  
+  {/* Quote Section */}
+  <div className="max-w-4xl mx-auto py-12 px-8 bg-opacity-70 rounded-lg shadow-md flex items-center gap-6">
+    <img
+      src="/apj-abdul-kalam.png"
+      alt="APJ Abdul Kalam"
+      className="w-32 h-32 rounded-full object-cover shadow-md"
+    />
+    <div>
+      <blockquote className="mb-4">
+        <p className="text-2xl font-semibold text-cyan-400 leading-relaxed">
+          "All Birds find shelter during a rain. But Eagle avoids rain by flying above the Clouds."
+        </p>
+      </blockquote>
+      <figcaption className=" font-medium">
+       - APJ Abdul Kalam
+      </figcaption>
+    </div>
+  </div>
+</div>
+
+     
       {/* Contact Us */}
       <section ref={contactUsRef} className="bg-gradient-to-br from-gray-900 to-black text-white px-6 py-20 sm:py-28 relative overflow-hidden">
   <div className="max-w-4xl mx-auto">
