@@ -124,7 +124,11 @@ export default function Home() {
 
     <div
       className={`relative overflow-hidden bg-gradient-to-b from-black to-gray-900 text-white ${poppins.className}`}
-    >
+    ><style jsx>{`
+      html {
+        scroll-behavior: smooth; /* This enables smooth scrolling */
+      }
+    `}</style>
      <Particlesdemo className="absolute inset-0 z-0" quantity={75} staticity={60} ease={60}/>
       {/* Navbar */}
       <header
@@ -251,15 +255,17 @@ export default function Home() {
 
       {/* Talk to Us Button for Mobile */}
       <ShinyButton className="block lg:hidden bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors mt-4">
-        Talk to us
-      </ShinyButton>
+          Talk to us
+        </ShinyButton>
 
     </nav>
 
     {/* Talk to Us Button for Desktop */}
+    <a href="tel:+91 6379426638">
     <ShinyButton className="hidden lg:block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors">
       Talk to us
     </ShinyButton>
+    </a>
   </nav>
 </header>
 
@@ -285,9 +291,9 @@ export default function Home() {
           <p className="max-w-2xl mx-auto text-xl mb-12 text-gray-300">
             We are pioneering the development of high-altitude platform systems designed for Intelligence Surveillance and Reconnaissance (ISR) and near-space applications. Our solutions provide sustainable, cost-effective alternatives for defense, research, and commercial enterprises.
           </p>
-          <RainbowButton>
-            Explore Our Solutions 🡮
-          </RainbowButton>
+            <RainbowButton>
+              Explore Our Solutions 🡮
+            </RainbowButton>
         </main>
         <svg
           className="absolute inset-0 z-20 w-full h-full opacity-25"
@@ -383,6 +389,7 @@ export default function Home() {
 
       {/* Goals */}
       <div
+      id="goals"
         ref={goalsRef}
         className="text-white overflow-hidden py-16 w-full relative"
         style={{
@@ -449,150 +456,103 @@ export default function Home() {
 
         {/* Founders Section */}
         <h3 className="text-4xl font-bold mb-10 text-teal-400">Founders</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 mb-16">
-          {/* Founder 1 */}
-          <div className="flex flex-col items-center text-center group relative">
-            <div className="w-48 h-48 mb-4 relative">
-              <Image
-                src="/founder2.jpg"
-                alt="Logeshwaran M"
-                loading="lazy"
-                width={292}
-                height={292}
-                className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
-              />
-              <a
-                href="https://www.linkedin.com/in/logeshwaran-mahendran-ba27572b7/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              >
-                <div className="bg-cyan-500 p-3 rounded-full">
-                  <FaLinkedin className="h-6 w-6 text-white" />
-                </div>
-              </a>
+        <div className="flex flex-wrap justify-center gap-16 mb-16">
+          {/* Founder Cards */}
+          {[{
+            name: 'Logeshwaran M',
+            role: 'Founder & CEO',
+            bio: 'Aerospace Engineer, KCG Alumnus',
+            image: '/founder2.jpg',
+            linkedin: 'https://www.linkedin.com/in/logeshwaran-mahendran-ba27572b7/'
+          }, {
+            name: 'Jayshree B',
+            role: 'Founder & COO',
+            bio: 'Masters in Aerospace Engineering, Coventry University, UK',
+            image: '/jayashree.jpg',
+            linkedin: 'https://www.linkedin.com/in/jayashree-b-67950621a/'
+          }, {
+            name: 'Hariharan R',
+            role: 'Founder & CTO',
+            bio: 'Masters in Aerospace Engineering, MIT Campus',
+            image: '/founder1.jpg',
+            linkedin: 'https://www.linkedin.com/in/hariharan-r-4a9a3b20b/'
+          }].map((founder, index) => (
+            <div key={index} className="flex flex-col items-center text-center group relative w-64">
+              <div className="w-48 h-48 mb-4 relative">
+                <Image
+                  src={founder.image}
+                  alt={founder.name}
+                  loading="lazy"
+                  width={292}
+                  height={292}
+                  className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
+                />
+                <a
+                  href={founder.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <div className="bg-cyan-500 p-3 rounded-full">
+                    <FaLinkedin className="h-6 w-6 text-white" />
+                  </div>
+                </a>
+              </div>
+              <h3 className="text-2xl font-bold">{founder.name}</h3>
+              <p className="text-gray-400 mt-2">
+                {founder.role}
+                <br />
+                {founder.bio}
+              </p>
             </div>
-            <h3 className="text-2xl font-bold">Logeshwaran M</h3>
-            <p className="text-gray-400 mt-2">
-              Founder & CEO<br />Aerospace Engineer, KCG Alumnus
-            </p>
-          </div>
-
-          {/* Founder 2 */}
-          <div className="flex flex-col items-center text-center group relative">
-            <div className="w-48 h-48 mb-4 relative">
-              <Image
-                src="/founder1.jpg"
-                alt="Hariharan R"
-                loading="lazy"
-                width={292}
-                height={292}
-                className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
-              />
-              <a
-                href="https://www.linkedin.com/in/hariharan-r-4a9a3b20b/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              >
-                <div className="bg-cyan-500 p-3 rounded-full">
-                  <FaLinkedin className="h-6 w-6 text-white" />
-                </div>
-              </a>
-            </div>
-            <h3 className="text-2xl font-bold">Hariharan R</h3>
-            <p className="text-gray-400 mt-2">
-              Founder & CTO<br />Masters in Aerospace Engineering, MIT Campus
-            </p>
-          </div>
+          ))}
         </div>
 
         {/* Core Team Section */}
         <h3 className="text-4xl font-bold mb-10 text-teal-400">Core Team</h3>
-        <div className="flex flex-wrap justify-center gap-12">
-          {/* Srikanth's Card */}
-          <div className="flex flex-col items-center text-center group relative w-64">
-            <div className="w-48 h-48 mb-4 relative">
-              <Image
-                src="/srikanth.jpg"
-                alt="Srikanth R"
-                loading="lazy"
-                width={192}
-                height={192}
-                className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
-              />
-              <a
-                href="https://www.linkedin.com/in/srikanth-r-9974b521a/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              >
-                <div className="bg-cyan-500 p-3 rounded-full">
-                  <FaLinkedin className="h-6 w-6 text-white" />
-                </div>
-              </a>
+        <div className="flex flex-wrap justify-center gap-16">
+          {/* Core Team Cards */}
+          {[{
+            name: 'Srikanth R',
+            role: 'Aerospace Engineer (Space Vehicle Dynamics)',
+            bio: 'Masters in Aerospace Engineering, Coventry University, UK',
+            image: '/srikanth.jpg',
+            linkedin: 'https://www.linkedin.com/in/srikanth-r-9974b521a/'
+          }, {
+            name: 'Srinivasan A',
+            role: 'Aerospace Engineer (Structural and Material Design)',
+            bio: '',
+            image: '/srinivasan.jpg',
+            linkedin: 'https://www.linkedin.com/in/a-srinivasan-8a64a9297'
+          }].map((member, index) => (
+            <div key={index} className="flex flex-col items-center text-center group relative w-64">
+              <div className="w-48 h-48 mb-4 relative">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  loading="lazy"
+                  width={192}
+                  height={192}
+                  className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
+                />
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                  <div className="bg-cyan-500 p-3 rounded-full">
+                    <FaLinkedin className="h-6 w-6 text-white" />
+                  </div>
+                </a>
+              </div>
+              <h4 className="text-2xl font-bold">{member.name}</h4>
+              <p className="text-gray-400 mt-2">
+                {member.role}
+                {member.bio && <><br />{member.bio}</>}
+              </p>
             </div>
-            <h4 className="text-2xl font-bold">Srikanth R</h4>
-            <p className="text-gray-400 mt-2">
-              Aerospace Engineer <br></br>( Space Vehicle Dynamics )<br />Masters in Aerospace Engineering, Coventry University, UK
-            </p>
-          </div>
-
-          {/* Jayashree's Card */}
-          <div className="flex flex-col items-center text-center group relative w-64">
-            <div className="w-48 h-48 mb-4 relative">
-              <Image
-                src="/jayashree.jpg"
-                alt="Jayashree B"
-                loading="lazy"
-                width={192}
-                height={192}
-                className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
-              />
-              <a
-                href="https://www.linkedin.com/in/jayashree-b-67950621a/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              >
-                <div className="bg-cyan-500 p-3 rounded-full">
-                  <FaLinkedin className="h-6 w-6 text-white" />
-                </div>
-              </a>
-            </div>
-            <h4 className="text-2xl font-bold">Jayashree B</h4>
-            <p className="text-gray-400 mt-2">
-              Aerospace Engineer<br></br> ( Design and Flight Testing )<br />Masters in Aerospace Engineering, Coventry University, UK
-            </p>
-          </div>
-
-          {/* Srinivasan's Card */}
-          <div className="flex flex-col items-center text-center group relative w-64">
-            <div className="w-48 h-48 mb-4 relative">
-              <Image
-                src="/srinivasan.jpg"
-                alt="Srinivasan A"
-                loading="lazy"
-                width={192}
-                height={192}
-                className="rounded-full object-cover transition-all duration-300 group-hover:blur-[2px]"
-              />
-              <a
-                href="https://www.linkedin.com/in/a-srinivasan-8a64a9297"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              >
-                <div className="bg-cyan-500 p-3 rounded-full">
-                  <FaLinkedin className="h-6 w-6 text-white" />
-                </div>
-              </a>
-            </div>
-            <h4 className="text-2xl font-bold">Srinivasan A</h4>
-            <p className="text-gray-400 mt-2">
-              Aerospace Engineer <br></br> ( Structural and Material Design ) 
-            </p>
-          </div>
+          ))}
         </div>
       </div>
     </main>
@@ -625,7 +585,7 @@ export default function Home() {
     <div>
       <blockquote className="mb-4">
         <p className="text-2xl font-semibold text-cyan-400 leading-relaxed">
-          "All Birds find shelter during a rain. But Eagle avoids rain by flying above the Clouds."
+          "All Birds find shelter during a rain, But Eagle avoids rain by flying above the Clouds."
         </p>
       </blockquote>
       <figcaption className=" font-medium">
@@ -712,7 +672,7 @@ export default function Home() {
           ></iframe>
         </div>
         <p className="text-center lg:text-left text-gray-400 text-lg">
-          Dashagriv Aerospace Technology (DAT), KCG College of Technology, Chennai 98, OMR, Karapakkam
+          Dashagriv Aerospace Technology (DAT), KCG College of Technology, Chennai - 600098, OMR, Karapakkam
         </p>
       </div>
     </div>
