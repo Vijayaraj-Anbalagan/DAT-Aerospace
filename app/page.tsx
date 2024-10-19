@@ -317,7 +317,7 @@ export default function Home() {
             cost-effective alternatives for defense, research, and commercial
             enterprises.
           </p>
-          <RainbowButton>Explore Our Solutions 🡮</RainbowButton>
+          <RainbowButton onClick={() => scrollToSection(goalsRef)}>Explore Our Solutions 🡮</RainbowButton>
         </main>
         <svg
           className="absolute inset-0 z-20 w-full h-full opacity-25"
