@@ -314,7 +314,7 @@ export default function Home() {
             We are pioneering the development of high-altitude platform systems
             designed for Intelligence Surveillance and Reconnaissance (ISR) and
             near-space applications. Our solutions provide sustainable,
-            cost-effective alternatives for defense, research, and commercial
+            cost-effective alternatives for defense, research and commercial
             enterprises.
           </p>
           <RainbowButton onClick={() => scrollToSection(goalsRef)}>Explore Our Solutions 🡮</RainbowButton>
