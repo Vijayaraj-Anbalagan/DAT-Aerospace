@@ -281,20 +281,20 @@ export default function Home() {
         </ul>
 
         {/* Talk to Us Button for Mobile */}
-        <a href="tel:+91 6824 97619">
-          <ShinyButton className="block lg:hidden bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors mt-4">
+        <a href="tel:+91682497619">
+          <ShinyButton className="block lg:hidden bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors mt-6">
             Talk to us
           </ShinyButton>
         </a>
-          </nav>
+  </nav>
 
-          {/* Talk to Us Button for Desktop */}
-          <a href="tel:+91 6824 97619">
-        <ShinyButton className="hidden lg:block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors">
-          Talk to us
-        </ShinyButton>
-          </a>
-        </nav>
+  {/* Talk to Us Button for Desktop */}
+  <a href="tel:+91682497619">
+    <ShinyButton className="hidden lg:block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors">
+      Talk to us
+    </ShinyButton>
+  </a>
+</nav>
       </header>
 
       <div
@@ -317,7 +317,7 @@ export default function Home() {
             cost-effective alternatives for defense, research and commercial
             enterprises.
           </p>
-          <RainbowButton onClick={() => scrollToSection(goalsRef)}>Explore Our Solutions 🡮</RainbowButton>
+          <RainbowButton onClick={() => scrollToSection(goalsRef)}>Explore Our Solutions 🡖</RainbowButton>
         </main>
         <svg
           className="absolute inset-0 z-20 w-full h-full opacity-25"
