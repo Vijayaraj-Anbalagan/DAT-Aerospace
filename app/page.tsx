@@ -139,160 +139,160 @@ export default function Home() {
       <header
         className={`fixed top-0 w-full z-40 transition-all duration-300 ease-in-out ${
           isScrolled
-            ? 'bg-black bg-opacity-80 backdrop-blur-lg'
-            : 'bg-transparent'
+        ? 'bg-black bg-opacity-80 backdrop-blur-lg'
+        : 'bg-transparent'
         } py-4 px-6 lg:px-12`}
       >
         <nav className="max-w-[85rem] w-full mx-auto flex items-center justify-between">
           {/* Logo */}
           <div
-            className="flex items-center cursor-pointer"
-            onClick={() => scrollToSection(homeRef)}
+        className="flex items-center cursor-pointer"
+        onClick={() => scrollToSection(homeRef)}
           >
-            <Image
-              loading="lazy"
-              src="/logo.png"
-              alt="Dashagriv Logo"
-              width={150}
-              height={150}
-              className="block"
-            />
+        <Image
+          loading="lazy"
+          src="/logo.png"
+          alt="Dashagriv Logo"
+          width={150}
+          height={150}
+          className="block"
+        />
           </div>
 
           {/* Hamburger Button for Mobile Menu */}
-          <div className="sm:hidden">
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(!isMobileMenuOpen);
-                document.body.style.overflow = isMobileMenuOpen ? '' : 'hidden';
-              }}
-              className="lg:hidden text-white focus:outline-none"
+          <div className="sm:hidden ml-auto">
+        <button
+          onClick={() => {
+            setIsMobileMenuOpen(!isMobileMenuOpen);
+            document.body.style.overflow = isMobileMenuOpen ? '' : 'hidden';
+          }}
+          className="text-white focus:outline-none"
+        >
+          {isMobileMenuOpen ? (
+            <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
             >
-              {isMobileMenuOpen ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16m-7 6h7"
-                  />
-                </svg>
-              )}
-            </button>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M6 18L18 6M6 6l12 12"
+          />
+            </svg>
+          ) : (
+            <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+            >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16m-7 6h7"
+          />
+            </svg>
+          )}
+        </button>
           </div>
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
-            <div className="lg:hidden fixed top-16 right-4 bg-black bg-opacity-90 z-50 p-6 rounded-lg shadow-lg transition-opacity duration-500 ease-in-out">
-              <ul className="space-y-4 text-center">
-                {[
-                  'Home',
-                  'About Us',
-                  'Goals',
-                  'Our Team',
-                  'Incubation',
-                  'Contact Us',
-                ].map((item) => (
-                  <li key={item}>
-                    <button
-                      onClick={() => {
-                        if (item === 'Home') scrollToSection(homeRef);
-                        if (item === 'About Us') scrollToSection(aboutRef);
-                        if (item === 'Goals') scrollToSection(goalsRef);
-                        if (item === 'Our Team') scrollToSection(foundersRef);
-                        if (item === 'Incubation')
-                          scrollToSection(incubationRef);
-                        if (item === 'Contact Us')
-                          scrollToSection(contactUsRef);
-                        setIsMobileMenuOpen(false);
-                        document.body.style.overflow = '';
-                      }}
-                      className="text-white text-lg font-medium hover:text-cyan-400 transition-transform transform hover:scale-105"
-                    >
-                      {item}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-              <button
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full mt-6 transform hover:scale-105 transition-transform w-full"
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  document.body.style.overflow = '';
-                }}
-              >
-                Talk to us
-              </button>
-            </div>
+        <div className="lg:hidden fixed top-16 right-4 bg-black bg-opacity-90 z-50 p-6 rounded-lg shadow-lg transition-opacity duration-500 ease-in-out">
+          <ul className="space-y-4 text-center">
+            {[
+          'Home',
+          'About Us',
+          'Goals',
+          'Our Team',
+          'Incubation',
+          'Contact Us',
+            ].map((item) => (
+          <li key={item}>
+            <button
+              onClick={() => {
+            if (item === 'Home') scrollToSection(homeRef);
+            if (item === 'About Us') scrollToSection(aboutRef);
+            if (item === 'Goals') scrollToSection(goalsRef);
+            if (item === 'Our Team') scrollToSection(foundersRef);
+            if (item === 'Incubation')
+              scrollToSection(incubationRef);
+            if (item === 'Contact Us')
+              scrollToSection(contactUsRef);
+            setIsMobileMenuOpen(false);
+            document.body.style.overflow = '';
+              }}
+              className="text-white text-lg font-medium hover:text-cyan-400 transition-transform transform hover:scale-105"
+            >
+              {item}
+            </button>
+          </li>
+            ))}
+          </ul>
+          <button
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full mt-6 transform hover:scale-105 transition-transform w-full"
+            onClick={() => {
+          setIsMobileMenuOpen(false);
+          document.body.style.overflow = '';
+            }}
+          >
+            Talk to us
+          </button>
+        </div>
           )}
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:block px-4 py-2 rounded-full border border-gray-700">
-            <ul className="flex space-x-6">
-              {[
-                'Home',
-                'About Us',
-                'Goals',
-                'Our Team',
-                'Incubation',
-                'Contact Us',
-              ].map((item) => (
-                <li key={item}>
-                  <button
-                    onClick={() => {
-                      if (item === 'Home') scrollToSection(homeRef);
-                      if (item === 'About Us') scrollToSection(aboutRef);
-                      if (item === 'Goals') scrollToSection(goalsRef);
-                      if (item === 'Our Team') scrollToSection(foundersRef);
-                      if (item === 'Incubation') scrollToSection(incubationRef);
-                      if (item === 'Contact Us') scrollToSection(contactUsRef);
-                    }}
-                    className={`transition-colors ${
-                      activeSection === item
-                        ? 'text-cyan-400 font-bold'
-                        : 'hover:text-cyan-400'
-                    }`}
-                  >
-                    {item}
-                  </button>
-                </li>
-              ))}
-            </ul>
+        <ul className="flex space-x-6">
+          {[
+            'Home',
+            'About Us',
+            'Goals',
+            'Our Team',
+            'Incubation',
+            'Contact Us',
+          ].map((item) => (
+            <li key={item}>
+          <button
+            onClick={() => {
+              if (item === 'Home') scrollToSection(homeRef);
+              if (item === 'About Us') scrollToSection(aboutRef);
+              if (item === 'Goals') scrollToSection(goalsRef);
+              if (item === 'Our Team') scrollToSection(foundersRef);
+              if (item === 'Incubation') scrollToSection(incubationRef);
+              if (item === 'Contact Us') scrollToSection(contactUsRef);
+            }}
+            className={`transition-colors ${
+              activeSection === item
+            ? 'text-cyan-400 font-bold'
+            : 'hover:text-cyan-400'
+            }`}
+          >
+            {item}
+          </button>
+            </li>
+          ))}
+        </ul>
 
-            {/* Talk to Us Button for Mobile */}
-            <a href="tel:+91 6824 97619">
-              <ShinyButton className="block lg:hidden bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors mt-4">
-                Talk to us
-              </ShinyButton>
-            </a>
+        {/* Talk to Us Button for Mobile */}
+        <a href="tel:+91 6824 97619">
+          <ShinyButton className="block lg:hidden bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors mt-4">
+            Talk to us
+          </ShinyButton>
+        </a>
           </nav>
 
           {/* Talk to Us Button for Desktop */}
           <a href="tel:+91 6824 97619">
-            <ShinyButton className="hidden lg:block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors">
-              Talk to us
-            </ShinyButton>
+        <ShinyButton className="hidden lg:block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors">
+          Talk to us
+        </ShinyButton>
           </a>
         </nav>
       </header>
