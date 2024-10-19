@@ -387,7 +387,7 @@ export default function Home() {
                     <p className="text-lg text-gray-300">
                       To be a global leader in space technology, pioneering
                       high-altitude platforms and near-space solutions that
-                      enhance security, enable scientific research, and promote
+                      enhance security, enable scientific research and promote
                       sustainability.
                     </p>
                     <h2 className="text-4xl font-bold mt-8 mb-4">
