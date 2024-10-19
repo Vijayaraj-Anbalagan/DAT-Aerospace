@@ -10,6 +10,7 @@ import ShinyButton from '@/components/ui/shiny-button';
 import SparklesText from '@/components/ui/sparkles-text';
 import Particlesdemo from '@/components/ui/particles';
 import { FaLinkedin } from 'react-icons/fa'; 
+import Footer from '@/components/ui/footer';
 
 const poppins = Raleway({ weight: ['400', '600', '700'], subsets: ['latin'] });
 
@@ -254,14 +255,15 @@ export default function Home() {
       </ul>
 
       {/* Talk to Us Button for Mobile */}
+      <a href="tel:+91 6824 97619">
       <ShinyButton className="block lg:hidden bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors mt-4">
           Talk to us
         </ShinyButton>
-
+        </a>
     </nav>
 
     {/* Talk to Us Button for Desktop */}
-    <a href="tel:+91 6379426638">
+    <a href="tel:+91 6824 97619">
     <ShinyButton className="hidden lg:block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors">
       Talk to us
     </ShinyButton>
@@ -465,7 +467,7 @@ export default function Home() {
             image: '/founder2.jpg',
             linkedin: 'https://www.linkedin.com/in/logeshwaran-mahendran-ba27572b7/'
           }, {
-            name: 'Jayshree B',
+            name: 'Jayashree B',
             role: 'Founder & COO',
             bio: 'Masters in Aerospace Engineering, Coventry University, UK',
             image: '/jayashree.jpg',
@@ -678,75 +680,7 @@ export default function Home() {
     </div>
   </div>
 </section>
-
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 px-4 sm:px-12">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-xl font-bold mb-4">Dashagriv Aerospace Technology</h3>
-            <p className="text-gray-400">
-              Dashagriv Aerospace Technology Private Limited (DAT) is dedicated to advancing aerospace technology for near-space applications.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="#home" className="hover:text-cyan-400 transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="#about" className="hover:text-cyan-400 transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="#goals" className="hover:text-cyan-400 transition-colors">
-                  Goals
-                </Link>
-              </li>
-              <li>
-                <Link href="#contact" className="hover:text-cyan-400 transition-colors">
-                  Contact Us
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold mb-4">Socials</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="#" className="hover:text-cyan-400 transition-colors">
-                  LinkedIn
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-cyan-400 transition-colors">
-                  Twitter
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-cyan-400 transition-colors">
-                  Instagram
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <p className="text-gray-400 text-sm">
-              Made with ❤ by
-            </p>
-            <SparklesText text="SocialSync" className='text-4xl' />
-            
-            <p className="text-gray-500 text-xs mt-2">
-              &copy; 2024 Dashagriv Aerospace Technology. All rights reserved.
-            </p>
-         
-          </div>
-        </div>
-      </footer>
+<Footer />
     </div>
     
   );
