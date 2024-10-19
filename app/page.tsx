@@ -9,7 +9,7 @@ import { RainbowButton } from '@/components/ui/rainbow-button';
 import ShinyButton from '@/components/ui/shiny-button';
 import SparklesText from '@/components/ui/sparkles-text';
 import Particlesdemo from '@/components/ui/particles';
-import { FaLinkedin } from 'react-icons/fa';
+import { FaLinkedin, FaPhoneAlt } from 'react-icons/fa';
 import Footer from '@/components/ui/footer';
 
 const poppins = Raleway({ weight: ['400', '600', '700'], subsets: ['latin'] });
@@ -235,15 +235,15 @@ export default function Home() {
           </li>
             ))}
           </ul>
-          <button
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full mt-6 transform hover:scale-105 transition-transform w-full"
-            onClick={() => {
-          setIsMobileMenuOpen(false);
-          document.body.style.overflow = '';
-            }}
+        <li className='list-none'>
+          <a
+            href="tel:+919125338298"
+            className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors mt-6"
           >
-            Talk to us
-          </button>
+            <FaPhoneAlt className="mr-2" />
+            Talk to Us
+          </a>
+        </li>
         </div>
           )}
 
