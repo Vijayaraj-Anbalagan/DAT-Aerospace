@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.dashagriv.in/</loc>
+    <lastmod>2024-10-20</lastmod>
+    <priority>1.0</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- About Us Section -->
+  <url>
+    <loc>https://www.dashagriv.in/#about</loc>
+    <lastmod>2024-10-20</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Goals Section -->
+  <url>
+    <loc>https://www.dashagriv.in/#goals</loc>
+    <lastmod>2024-10-20</lastmod>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Meet the Team Section -->
+  <url>
+    <loc>https://www.dashagriv.in/#team</loc>
+    <lastmod>2024-10-20</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Contact Section -->
+  <url>
+    <loc>https://www.dashagriv.in/#contact</loc>
+    <lastmod>2024-10-20</lastmod>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>
