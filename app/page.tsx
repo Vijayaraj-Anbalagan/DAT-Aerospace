@@ -125,6 +125,7 @@ export default function Home() {
     <div
       className={`relative overflow-hidden bg-gradient-to-b from-black to-gray-900 text-white ${poppins.className}`}
     >
+      
       <style jsx>{`
         html {
           scroll-behavior: smooth; /* This enables smooth scrolling */
@@ -676,7 +677,6 @@ export default function Home() {
                 flying above the Clouds."
               </p>
             </blockquote>
-            <figcaption className=" font-medium">- APJ Abdul Kalam</figcaption>
           </div>
         </div>
       </div>
