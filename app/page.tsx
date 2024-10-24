@@ -11,6 +11,7 @@ import SparklesText from '@/components/ui/sparkles-text';
 import Particlesdemo from '@/components/ui/particles';
 import { FaLinkedin, FaPhoneAlt } from 'react-icons/fa';
 import Footer from '@/components/ui/footer';
+import Particles from '@/components/ui/particles';
 
 const poppins = Raleway({ weight: ['400', '600', '700'], subsets: ['latin'] });
 
@@ -129,11 +130,12 @@ export default function Home() {
           scroll-behavior: smooth; /* This enables smooth scrolling */
         }
       `}</style>
-      <Particlesdemo
-        className="absolute inset-0 z-0"
-        quantity={75}
-        staticity={60}
-        ease={60}
+      <Particles
+        className="absolute inset-0"
+        quantity={100}
+        ease={80}
+        color={'ffffff'}
+        refresh
       />
       {/* Navbar */}
       <header
