@@ -89,5 +89,31 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1rem;
-  
 }
+
+#ff-compose input[type="text"],
+#ff-compose input[type="email"],
+#ff-compose input[type="tel"],
+#ff-compose textarea,
+#ff-compose select {
+    color: white; /* Text color */
+    background-color: black; /* Background color for input fields */
+    border: 1px solid #ccc; /* Border color */
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#ff-compose input::placeholder,
+#ff-compose textarea::placeholder {
+    color: #999; /* Placeholder text color */
+}
+
+#ff-compose input:focus,
+#ff-compose textarea:focus,
+#ff-compose select:focus {
+    outline: none;
+    border-color: #00bcd4; /* Focus border color */
+    box-shadow: 0 0 5px rgba(0, 188, 212, 0.5); /* Focus shadow effect */
+}
+
