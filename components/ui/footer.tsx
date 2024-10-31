@@ -71,7 +71,7 @@ export default function Footer({
           <ul className="space-y-2">
             <li>
               <a
-                href="https://www.linkedin.com/company/dashagriv-aerospace"
+                href="https://www.linkedin.com/company/dashagriv-aerospace-technology/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-cyan-400 transition-colors"
