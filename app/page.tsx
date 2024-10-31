@@ -240,7 +240,7 @@ export default function Home() {
           </ul>
         <li className='list-none'>
           <a
-            href="tel:+91682497619"
+            href="tel:+916382497619"
             className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors mt-6"
           >
             <FaPhoneAlt className="mr-2" />
@@ -284,7 +284,7 @@ export default function Home() {
         </ul>
 
         {/* Talk to Us Button for Mobile */}
-        <a href="tel:+91 6382497619">
+        <a href="tel:+916382497619">
           <ShinyButton className="block lg:hidden bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors mt-6">
             Talk to us
           </ShinyButton>
@@ -292,7 +292,7 @@ export default function Home() {
   </nav>
 
   {/* Talk to Us Button for Desktop */}
-  <a href="tel:+91 6382497619">
+  <a href="tel:+916382497619">
     <ShinyButton className="hidden lg:block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors">
       Talk to us
     </ShinyButton>
