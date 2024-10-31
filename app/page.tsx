@@ -698,7 +698,7 @@ export default function Home() {
               <h2 className="text-5xl md:text-4xl font-bold mb-6 text-center lg:text-left bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600">
                 Get In Touch
               </h2>
-              <form className="space-y-4">
+              <form className="space-y-4" action="https://submit-form.com/8N4ecGzTI" >
                 <div>
                   <label
                     htmlFor="name"
