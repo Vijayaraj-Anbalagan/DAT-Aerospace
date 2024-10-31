@@ -240,7 +240,7 @@ export default function Home() {
           </ul>
         <li className='list-none'>
           <a
-            href="tel:+919125338298"
+            href="tel:+91682497619"
             className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition-colors mt-6"
           >
             <FaPhoneAlt className="mr-2" />
@@ -425,74 +425,79 @@ export default function Home() {
 
       {/* Goals */}
       <div
-        id="goals"
-        ref={goalsRef}
-        className="text-white overflow-hidden py-16 w-full relative"
-        style={{
-          backgroundColor: 'black',
-        }}
-      >
-        <Meteors number={10} />
-        <div className="relative z-10">
-          <main className="container mx-auto px-4 py-20">
-            <div className="text-center">
-              <h2 className="text-5xl md:text-6xl font-bold mb-8">
-                Our{' '}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600">
-                  Goals
-                </span>
-              </h2>
-              <p className="max-w-2xl mx-auto text-lg text-gray-300 mb-10">
-                We strive to lead the aerospace sector by providing
-                state-of-the-art, high-altitude technology that is sustainable,
-                effective, and innovative. Our primary goal is to redefine
-                aerospace capabilities in defense and commercial sectors through
-                cutting-edge advancements.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <ShineBorder
-                  className="relative bg-black border-slate-900 border-2 p-6 rounded-lg"
-                  color={['#A07CFE', '#FE8FB5', '#FFBE7B']}
-                >
-                  <h3 className="text-xl font-bold text-white mb-4">
-                    Innovation and Excellence
-                  </h3>
-                  <p className="text-gray-300">
-                    Redefining aerospace technologies by pushing the boundaries
-                    of innovation and delivering state-of-the-art solutions for
-                    high-altitude operations.
-                  </p>
-                </ShineBorder>
-                <ShineBorder
-                  className="relative bg-black border-slate-900 border-2 p-6 rounded-lg"
-                  color={['#A07CFE', '#FE8FB5', '#FFBE7B']}
-                >
-                  <h3 className="text-xl font-bold text-white mb-4">
-                    Sustainability and Cost-Effectiveness
-                  </h3>
-                  <p className="text-gray-300">
-                    Providing sustainable and cost-effective technologies that
-                    offer significant value for defense, research, and
-                    commercial enterprises.
-                  </p>
-                </ShineBorder>
-                <ShineBorder
-                  className="relative bg-black border-slate-900 border-2 p-6 rounded-lg"
-                  color={['#A07CFE', '#FE8FB5', '#FFBE7B']}
-                >
-                  <h3 className="text-xl font-bold text-white mb-4">
-                    Collaboration and Growth
-                  </h3>
-                  <p className="text-gray-300">
-                    Collaborating with global institutions and research bodies
-                    to foster growth and innovation in the aerospace industry.
-                  </p>
-                </ShineBorder>
-              </div>
-            </div>
-          </main>
+  id="goals"
+  ref={goalsRef}
+  className="text-white overflow-hidden py-16 w-full relative"
+  style={{
+    backgroundColor: 'black',
+  }}
+>
+  <Meteors number={10} />
+  <div className="relative z-10">
+    <main className="container mx-auto px-4 py-20">
+      <div className="text-center">
+        <h2 className="text-5xl md:text-6xl font-bold mb-8">
+          Our{' '}
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600">
+            Goals
+          </span>
+        </h2>
+        <p className="max-w-2xl mx-auto text-lg text-gray-300 mb-10">
+          We strive to lead the aerospace sector by providing state-of-the-art, high-altitude technology that is sustainable, effective, and innovative. Our primary goal is to redefine aerospace capabilities in defense and commercial sectors through cutting-edge advancements.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <ShineBorder
+            className="relative bg-black border-slate-900 border-2 p-6 rounded-lg"
+            color={['#A07CFE', '#FE8FB5', '#FFBE7B']}
+          >
+            <h3 className="text-xl font-bold text-white mb-4">
+              Innovation and Excellence
+            </h3>
+            <p className="text-gray-300">
+              Redefining aerospace technologies by pushing the boundaries of innovation and delivering state-of-the-art solutions for high-altitude operations.
+            </p>
+          </ShineBorder>
+          <ShineBorder
+            className="relative bg-black border-slate-900 border-2 p-6 rounded-lg"
+            color={['#A07CFE', '#FE8FB5', '#FFBE7B']}
+          >
+            <h3 className="text-xl font-bold text-white mb-4">
+              Sustainability and Cost-Effectiveness
+            </h3>
+            <p className="text-gray-300">
+              Providing sustainable and cost-effective technologies that offer significant value for defense, research, and commercial enterprises.
+            </p>
+          </ShineBorder>
+          <ShineBorder
+            className="relative bg-black border-slate-900 border-2 p-6 rounded-lg"
+            color={['#A07CFE', '#FE8FB5', '#FFBE7B']}
+          >
+            <h3 className="text-xl font-bold text-white mb-4">
+              Collaboration and Growth
+            </h3>
+            <p className="text-gray-300">
+              Collaborating with global institutions and research bodies to foster growth and innovation in the aerospace industry.
+            </p>
+          </ShineBorder>
+        </div>
+
+        {/* Call-to-Action Section */}
+        <div className="mt-16 text-center">
+          <p className="text-lg text-gray-300 mb-6">
+            Want to be part of our journey in achieving these goals? Join hands with us and make a difference in the aerospace industry.
+          </p>
+          <a
+            href="/careers"
+            className="inline-block px-8 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-blue-600 text-white font-bold transform transition-transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-cyan-400 focus:ring-offset-2"
+          >
+            Explore Careers 🡖
+          </a>
         </div>
       </div>
+    </main>
+  </div>
+</div>
+
 
       {/* Meet the Founders */}
       <div
