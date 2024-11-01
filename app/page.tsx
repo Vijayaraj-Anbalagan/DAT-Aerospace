@@ -698,64 +698,65 @@ export default function Home() {
               <h2 className="text-5xl md:text-4xl font-bold mb-6 text-center lg:text-left bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600">
                 Get In Touch
               </h2>
-              <form className="space-y-4" action="https://submit-form.com/8N4ecGzTI" >
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium mb-2 text-cyan-400"
-                  >
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-600 focus:outline-none focus:ring-4 focus:ring-cyan-500 transition-all duration-300"
-                    placeholder="Your Name"
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium mb-2 text-cyan-400"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-600 focus:outline-none focus:ring-4 focus:ring-cyan-500 transition-all duration-300"
-                    placeholder="Your Email"
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium mb-2 text-cyan-400"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    className="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-600 focus:outline-none focus:ring-4 focus:ring-cyan-500 transition-all duration-300"
-                    placeholder="Your Message"
-                    required
-                  ></textarea>
-                </div>
-                <div className="text-center">
-                  <button
-                    type="submit"
-                    className="px-8 py-3 mt-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-600 text-white font-bold transform transition-transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-cyan-400 focus:ring-offset-2"
-                  >
-                    Send Message
-                  </button>
-                </div>
-              </form>
+              <form className="space-y-4" action="https://submit-form.com/8N4ecGzTI">
+  <div>
+    <label
+      htmlFor="name"
+      className="block text-sm font-medium mb-2 text-cyan-400"
+    >
+      Name
+    </label>
+    <input
+      type="text"
+      id="name"
+      name="name" 
+      className="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-600 focus:outline-none focus:ring-4 focus:ring-cyan-500 transition-all duration-300"
+      placeholder="Your Name"
+      required
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="email"
+      className="block text-sm font-medium mb-2 text-cyan-400"
+    >
+      Email
+    </label>
+    <input
+      type="email"
+      id="email"
+      name="email" 
+      className="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-600 focus:outline-none focus:ring-4 focus:ring-cyan-500 transition-all duration-300"
+      placeholder="Your Email"
+      required
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="message"
+      className="block text-sm font-medium mb-2 text-cyan-400"
+    >
+      Message
+    </label>
+    <textarea
+      id="message"
+      name="message" 
+      rows={5}
+      className="w-full p-3 rounded-lg bg-gray-800 text-white border border-cyan-600 focus:outline-none focus:ring-4 focus:ring-cyan-500 transition-all duration-300"
+      placeholder="Your Message"
+      required
+    ></textarea>
+  </div>
+  <div className="text-center">
+    <button
+      type="submit"
+      className="px-8 py-3 mt-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-600 text-white font-bold transform transition-transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-cyan-400 focus:ring-offset-2"
+    >
+      Send Message
+    </button>
+  </div>
+</form>
+
             </div>
 
             {/* Map Section */}
